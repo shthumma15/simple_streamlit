@@ -1,0 +1,11 @@
+name: simple-streamlit
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - pandas
+    - matplotlib
+    - streamlit
+    - scikit-learn
+    - boto3
+    - ipykernel

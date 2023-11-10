@@ -1,0 +1,13 @@
+# iPython
+.ipynb*
+__pycache__*
+*.pyc
+
+# app stuff
+config_vars.json
+scratch.ipynb
+data*
+*.pickle
+
+# macOS
+*.DS_Store
