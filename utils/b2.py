@@ -8,6 +8,18 @@ from botocore.config import Config
 
 class B2(object):
     def __init__(self, endpoint, key_id, secret_key):
+        """
+        Set up a connection between the current instance and Backblaze.
+
+        Parameters
+        ----------
+        endpoint : str
+            The endpoint, usually starting with "https://s3. ..."
+        key_id : str
+            The "Key ID" for the application key from Backblaze.
+        secret_key : str
+            The Key secret, or "Key" for the Backblaze app key itself.
+        """
         # Return a boto3 resource object for B2 service
         self.b2 = boto3.resource(service_name='s3',
                                 endpoint_url=endpoint,
@@ -16,6 +28,14 @@ class B2(object):
                                 config=Config(signature_version='s3v4'))
         
     def set_bucket(self, bucket_name):
+        """
+        Select a bucket accessible by the chosen app key.
+
+        Parameters
+        ----------
+        bucket_name : str
+            Name of Bucket
+        """
         self.bucket = self.b2.Bucket(bucket_name)
 
     def list_files(self, verbose=False):
