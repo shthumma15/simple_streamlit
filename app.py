@@ -32,7 +32,7 @@ b2 = B2(endpoint=os.environ['B2_ENDPOINT'],
 st.write(
 '''
 ## Seattle Home Prices
-We can import data into our streamlit app using pandas read_csv then display the resulting dataframe with st.dataframe()
+We pull data from our Backblaze storage bucket, and render it in Streamlit using `st.dataframe()`.
 ''')
 
 b2.set_bucket(os.environ['B2_BUCKETNAME'])
@@ -41,7 +41,7 @@ df_prices = b2.to_df(REMOTE_DATA)
 st.dataframe(df_prices)
 
 # ------------------------------
-# PART 1 : Train Model
+# PART 1 : Filter Data
 # ------------------------------
 
 features = ['SQUARE FEET', 'BEDS', 'LATITUDE', 'LONGITUDE']
@@ -52,7 +52,7 @@ df_prices.dropna(inplace=True)
 
 
 # ------------------------------
-# PART 1 : Plot
+# PART 2 : Plot
 # ------------------------------
 
 st.write(
@@ -72,7 +72,9 @@ show_graph = st.checkbox('Show Graph', value=True)
 if show_graph:
     st.pyplot(fig)
 
-# PART 5
+# ------------------------------
+# PART 3 : Mapping and Filtering
+# ------------------------------
     
 st.write(
 '''
@@ -90,7 +92,9 @@ price_input = st.slider('House Price Filter',
 price_filter = df_prices['PRICE'] < price_input
 st.map(df_prices.loc[price_filter, ['LATITUDE', 'LONGITUDE']])
 
-# PART 6
+# ------------------------------
+# PART 4 : Train Model
+# ------------------------------
 
 st.write(
 '''
@@ -116,7 +120,9 @@ lm = LinearRegression()
 lm.fit(X, y)
 
 
-# PART 7
+# ------------------------------
+# PART 5 : Predict on New Data
+# ------------------------------
 
 st.write(
 '''
@@ -127,7 +133,10 @@ st.write(
 sqrft = st.number_input('Square Footage of House', value=2000)
 beds = st.number_input('Number of Bedrooms', value=3)
 
+# model was trained on pandas data, so column names are best
 input_data = pd.DataFrame({'SQUARE FEET': [sqrft], 'BEDS': [beds]})
+
+# extract the first (and only) prediction value
 pred = lm.predict(input_data)[0]
 st.write(
 f'Predicted Sale Price of House: ${int(pred):,}'

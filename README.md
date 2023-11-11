@@ -38,7 +38,9 @@ This *utils* folder, including the *\_\_init__.py* file, creates a Python [packa
 
 ## Streamlit
 
-The app in this repository is run on [Streamlit](https://streamlit.io/). Code can be tested locally with `streamlit run app.py` (assuming your app file name is `app.py`, of course). Eventually, you will need to set up a [Streamlit Cloud](https://streamlit.io/cloud) account to link your project GitHub repository.
+The app in this repository is run on [Streamlit](https://streamlit.io/).
+
+Code can be tested locally with `streamlit run app.py` (assuming your app file name is `app.py`, of course). Once the app is running as you like, you will need to set up a [Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started) account to link your project GitHub repository.
 
 Use [dotenv](https://github.com/theskumar/python-dotenv#getting-started) to manage environment variables. You'll need to `pip` install it, as directed in the instructions, then create a file with the name *.env* (notice the period) in your project directory to hold any keys or secrets. We'll be using dotenv to access Backblaze, below. **Make sure ".env" is added to your [.gitignore file](https://www.atlassian.com/git/tutorials/saving-changes/gitignore)**.
 
