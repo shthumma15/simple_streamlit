@@ -109,7 +109,7 @@ from sklearn.linear_model import LinearRegression
 features = ['SQUARE FEET', 'BEDS']
 target = 'PRICE'
 
-df = df_prices[features + [target]]
+df = df_prices[features + [target]].copy()
 df.dropna(inplace=True)
 
 X = df[features]
