@@ -1,8 +1,8 @@
 # a simple streamlit app
 
-In this tutorial, we will:
+In this tutorial, we:
 
-1. Train a predictive model on our local computer, built on a Seattle House Prices dataset.
+1. Train a very basic predictive model using a Seattle House Prices dataset.
 2. Build a web app which uses this model, and test it out locally.
 3. Store data on Backblaze, and connect it to Streamlit
 4. Host the web app online using Streamlit (and GitHub).
@@ -11,9 +11,8 @@ In this tutorial, we will:
 
 This tutorial assumes the following:
 
-- You are using [Miniconda](https://docs.conda.io/en/latest/miniconda.html) as your Python package manager.
 - You have a GitHub account, and you're familiar with using git and .gitignore files.
-- You can build and manage a pip Python environment using Miniconda.
+- You can build and manage a pip Python environment.
 - You are familiar with environment variables.
 
 ## Project Setup
@@ -21,7 +20,7 @@ This tutorial assumes the following:
 1. Create a new folder for your web app (give it an [appropriate](https://gravitydept.com/blog/devising-a-git-repository-naming-convention) name), and place it in your GitHub "projects" folder.
 2. Initiate a Git repository in this folder with `git init` in the command line (after navigating to that folder with `cd`). Then, [add it to your GitHub Desktop](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/adding-a-repository-from-your-local-computer-to-github-desktop). You'll want to use Git early and often to ensure that your changes are tracked, and you can always go back to (or compare with) a past version that works.
    - Note the contents of the .gitignore file. Environment files (such as the .env file) should be strictly ignored.
-3. Initialize a pip environment using the *environment.yml* file in this directory using `conda env create -f environment.yml`. 
+3. Initialize a pip environment using the *environment.yml* file in this directory. For example, if you're using Ana/Miniconda, you'll use `conda env create -f environment.yml`. 
 4. Any time you add new packages to the environment, update the environment file, and save a new requirements file with `pip freeze > requirements.txt`.
    - **Note: all packages should be installed using pip.**
 
@@ -53,6 +52,6 @@ Sign up for the [Backblaze B2 Cloud Storage](https://www.backblaze.com/b2/cloud-
 
 ## Other Resources
 
-- You may consider using [Google Colab](https://colab.research.google.com/) to train your model.
+- You may consider using [Google Colab](https://colab.research.google.com/) to train your model and mold your project. Feel free to [use this as a template](https://colab.research.google.com/drive/1kgr3zMrC4sgBZXCx0jgVwXAIPXJgUJn_?usp=sharing) (i.e., make a copy of that notebook if you like). 
 - [Railway](https://railway.app/) is another alternative for hosting more complex web apps, but the Free Tier can be restricting.
-- [Plotly Dash](https://dash.plotly.com/tutorial) is an alternative for building visualizations, dashboards, and more intriguing Python-based products. It requires a more robust app hosting resource like Railway.
+- [Plotly Dash](https://dash.plotly.com/tutorial) is an alternative for building extensive interactive visualizations, dashboards, and more intriguing Python-based products. It requires a more robust app hosting resource like Railway, and it does have a bit of a learning curve.
