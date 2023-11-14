@@ -1,6 +1,6 @@
 import os
 import json
-
+import pickle
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
@@ -96,28 +96,31 @@ st.map(df_prices.loc[price_filter, ['LATITUDE', 'LONGITUDE']])
 # PART 4 : Train Model
 # ------------------------------
 
-st.write(
-'''
-## Train a linear Regression Model
-Create a model to predict house price from sqft and number of beds
-'''
-)
+# st.write(
+# '''
+# ## Train a linear Regression Model
+# Create a model to predict house price from sqft and number of beds
+# '''
+# )
 
-# There is a better way to do this ...
-from sklearn.linear_model import LinearRegression
+# # There is a better way to do this ...
+# from sklearn.linear_model import LinearRegression
 
-features = ['SQUARE FEET', 'BEDS']
-target = 'PRICE'
+# features = ['SQUARE FEET', 'BEDS']
+# target = 'PRICE'
 
-df = df_prices[features + [target]].copy()
-df.dropna(inplace=True)
+# df = df_prices[features + [target]].copy()
+# df.dropna(inplace=True)
 
-X = df[features]
-y = df[target]
+# X = df[features]
+# y = df[target]
 
-lm = LinearRegression()
+# lm = LinearRegression()
 
-lm.fit(X, y)
+# lm.fit(X, y)
+
+with open("./model.pickle", 'rb') as f:
+    lm = pickle.load(f)
 
 
 # ------------------------------
@@ -130,7 +133,11 @@ st.write(
 '''
 )
 
-sqrft = st.number_input('Square Footage of House', value=2000)
+# sqrft = st.number_input('Square Footage of House', value=2000)
+
+sqrft = st.slider('Square Footage of House', 
+                   0, 500000, 1000)
+
 beds = st.number_input('Number of Bedrooms', value=3)
 
 # model was trained on pandas data, so column names are best
