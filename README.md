@@ -22,8 +22,9 @@ This tutorial assumes the following:
 2. Initiate a Git repository in this folder with `git init` in the command line (after navigating to that folder with `cd`). Then, [add it to your GitHub Desktop](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/adding-a-repository-from-your-local-computer-to-github-desktop). You'll want to use Git early and often to ensure that your changes are tracked, and you can always go back to (or compare with) a past version that works.
    - Note the contents of the .gitignore file. **Environment files (such as the .env file) should be strictly ignored.**
 3. Initialize a pip environment using the *environment.yml* file in this directory. For example, if you're using Ana/Miniconda, you'll use `conda env create -f environment.yml`. 
-4. Any time you add new packages to the environment, update the environment file, and save a new requirements file with `pip freeze > requirements.txt`.
+4. Any time you add new packages to the environment, **update the environment file**, and save an updated requirements file with `pip freeze > requirements.txt`. Choose one to add to your .gitignore file.
    - **Note: all packages should be installed using pip.**
+   - Keep in mind, if you have both a "requirements.txt" file *and* an "environment.yml" file, [Streamlit will only use the .yml file](https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/app-dependencies#other-python-package-managers). Pick one!
 
 ## Modularizing Code
 
@@ -42,6 +43,12 @@ Code can be tested locally with `streamlit run app.py` (assuming your app file n
 Use [dotenv](https://github.com/theskumar/python-dotenv#getting-started) to manage environment variables. You'll need to `pip` install it, as directed in the instructions, then create a file with the name *.env* (notice the period) in your project directory to hold any keys or secrets. We'll be using dotenv to access Backblaze, below. **Make sure ".env" is added to your [.gitignore file](https://www.atlassian.com/git/tutorials/saving-changes/gitignore)**.
 
 Once your environment variables are working locally, make sure you configure them accordingly on Streamlit using their [Secrets Management](https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/secrets-management).
+
+#### Caching
+
+This app uses [Streamlit caching](https://docs.streamlit.io/library/advanced-features/caching) capabilities to cache (or save) objects whose loading would otherwise slow down the application. To do so, the app employs decorator functions. For more information on decorator functions in Python, I recommend the first two sections of [this article on RealPython](https://realpython.com/primer-on-python-decorators), by Geir Arne Hjelle.
+
+In short, a decorator function adjusts its companion function by "wrapping" it in some other function. Here, the `@st.cache_data` or `@st.cache_object` decorator wraps its companion function such that the input is checked against a list of previous inputs of that function. If it's been run before, the output is pulled from this 
 
 ## Backblaze
 
