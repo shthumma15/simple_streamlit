@@ -44,13 +44,17 @@ class B2(object):
         else:
             return [f.key for f in self.bucket.objects.all()]
 
-    def to_df(self, remote_path):
+    def get_df(self, remote_path):
         # Get file
         obj = self.bucket.Object(remote_path)
         df = pd.read_csv(obj.get()['Body'])
         return df
+    
+    def get_object(self, remote_path):
+        obj = self.bucket.Object(remote_path)
+        return obj.get()['Body']
 
-    def to_b2(self, local_path, remote_path):
+    def file_to_b2(self, local_path, remote_path):
         '''
         Send `local_path` file to `remote_path`.
         '''

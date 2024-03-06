@@ -45,18 +45,19 @@ Once your environment variables are working locally, make sure you configure the
 
 ## Backblaze
 
-Sign up for the [Backblaze B2 Cloud Storage](https://www.backblaze.com/b2/cloud-storage.html) service. At the time of writing this, the first 10GB are free! For more information on Backblaze, check out their [documentation](https://www.backblaze.com/b2/docs/).
+Sign up for the [Backblaze B2 Cloud Storage](https://www.backblaze.com/b2/cloud-storage.html) service. At the time of writing this, the first 10GB are free! For more information on Backblaze, check out their [documentation](https://www.backblaze.com/docs/cloud-storage-python-developer-quick-start-guide).
 
 1. Set up at least one storage bucket for your project, and at least one app key. It's recommended that you get into the habit of keeping your bucket *private*.
    - You can set the "Default Encryption" to be "Disabled". Enabling this just adds another level of protection which you can experiment with *if you like*. Since this also adds a level of complexity and room for error, this tutorial assumes this is "Disabled."
    - When shown an app key or bucket key, make sure to save it in some file locally somewhere!
 2. This package includes a few Backblaze helper functions in the *utils/b2.py* file.
-   - For more information on these functions, take a look at the [Backblaze API documentation](https://www.backblaze.com/b2/docs/python.html).
+   - For more information on these functions, take a look at the [Backblaze b2sdk documentation](https://b2-sdk-python.readthedocs.io/en/master/index.html) (this is the Python package driving the [Backblaze Native API](https://www.backblaze.com/apidocs/introduction-to-the-b2-native-api)).
 
 
 
 ## Other Resources
 
 - You may consider using [Google Colab](https://colab.research.google.com/) to train your model and mold your project. Feel free to [use this as a template](https://colab.research.google.com/drive/1kgr3zMrC4sgBZXCx0jgVwXAIPXJgUJn_?usp=sharing) (i.e., make a copy of that notebook if you like). 
+- Note that this app just uses the native Streamlit visualization functionality. For more flexibility on your visualization options, see [here](https://docs.streamlit.io/library/api-reference/charts).
 - [Render](https://render.com/) and [Railway](https://railway.app/) are alternatives for hosting more robust web apps, but their free tiers can be restricting. In these cases, it's best to just pay the monthly fee.
 - [Plotly Dash](https://dash.plotly.com/tutorial) is an alternative for building extensive interactive visualizations, dashboards, and more intriguing Python-based products. It requires a more robust app hosting resource like Render or Railway, and it does have a bit of a learning curve.
